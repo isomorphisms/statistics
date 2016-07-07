@@ -23,6 +23,7 @@ In the world I see around me, people are buying master and PhD degrees in hopes 
 
 
 ### Getting: AWS S3 website visit logs
+webreadr
 
 ### Getting: Mailgun email logs
 
@@ -37,7 +38,12 @@ In the world I see around me, people are buying master and PhD degrees in hopes 
 
 #### grep -v
 
-#### sed 's/useless//'
+Remove a row that contains "bad" data. For example in analysing my S3 website logs I don’t care about the `PUT` requests I made uploading my stuff to the bucket.
+
+#### sed 's/useless//g'
+
+
+#### sed 's/long interesting thing of type A/A/g'
 
 
 ### Cleaning: nasty encodings
@@ -64,6 +70,10 @@ In the world I see around me, people are buying master and PhD degrees in hopes 
 
 #### cut -f1,4,5,7,8
 
+#### sort
+
+
+
 #### wc -l
 The `man` pages for Unix tools don't tell you that you will use some flags a lot more than others.
 
@@ -83,6 +93,24 @@ unix for poets
 
 ` <january.2016.log.2 jq '.[]' | jq '.[] | {hap: .hap, what: .message, when: .created_at} | select(.hap=="opened")'`
 
+
+
+
+#### Looking: stem plots
+
+At last, a bit of statistics! (No Tikhonov regularisation or Vapnik-Chervonenkis dimension yet, though.) `R` has a nice `stem` function which goes along nicely with `hist` and `plot( density(...))`, the kernel-density plotter. ("continuous histograms")
+
+I use modified `hist` and `kd` functions like so:
+
+```
+Hist <- function(data, ...) {
+  hist( data, col='#333333', border='white', ...)
+}
+```
+
+
+
+The `...` is special in `R`. `...` holds extra stuff you might want to pass to the inner `hist()` function, for example . It goes by other names in other languages, like `kwargs` or `argv`.
 
 
 
@@ -257,6 +285,97 @@ i@scheherezade:~/humility/statistics$ csvcut -n city_data.csv
 ```
 
 
+let's say you `cut -f1,2,3,4,6,7`, with `6,7` being the data columns you wish to regress and the others being identifying information. In other words how does violence go along with income?
+
+In order to do this sanely, I need to do several other things besides regress `6` on `7`, for instance:
+
+- plot first and make sure Anscombe’s Quartet isn't going to bite me. (Useful insight from academia!)
+- read the methodology and documentation and see how the numbers I'm regressing were defined and coded
+- multiply-regress or instrument against other proxies for income, such as education. (Now you do want some academic knowledge: how does IV work? what does multiple regression tell me? what was collinearity again, exactly?)
+- see if some of the other regressors (¿maybe `is_defense`? maybe `unemployment`?) 
+
+
+
+A second exercise I did with this data-set is check my stereotypes of blue vs red (political left and right in the United States), women's rights, income, education, etc.
+
+
+Writing down my prejudices / expectations / priors ("H₀") at the beginning and how my thinking changed after mucking about in the numbers, I often find that I'm just more confused at the end. Perhaps this is what data (reality being complex) does to stereotypes (which are somehow simple). Or perhaps I just did my analysis wrong (in particular not checking the data definitions hard enough). A practical check is to try to impress a non-statistical friend about the cool results I found and then fail to answer their basic and reasonable questions about what exactly I mean.
+
+
+
+
+
+## Workflow and tooling
+
+### history | grep command-i-used | tac | less
+
+`tac` swaps the order of 
+
+
+### make
+
+@broman
+@vagabondjack
+
+
+### bro
+
+`man` pages have too few examples, buried at the bottom. Start with `bro` (or google "thegeekstuff crontab")
+
+`sudo gem install bro`
+
+
+### r -pie '?as.POSIXct'
+
+
+#### some of my favourite bash shortcuts
+
+These go in `~/.bash_aliases` (`~` is short for `/home/isomorphisms/`) and are `source`d every time I open a terminal.
+
+
+```
+alias g='surfraw google'
+alias wk='surfraw wikipedia'
+alias def='surfraw google -l definition:'
+alias sl='ls'      #fix my own typoes
+alias ifconif='ifconfig'
+alias ifconig='ifconfig'
+alias del='gvfs-trash'
+alias rm='rm -i'   #save me from myself
+
+
+#http://unix.stackexchange.com/a/11859
+#print the first line AND whatever else
+body() {
+  IFS= read -r header
+  printf '%s\n' "$header"
+  "$@"
+}
+
+#no header
+nh() {
+  tail -n +2 $1
+}
+
+
+#make directory and then change to it
+mkcd() {
+  mkdir $1 && cd $1 && git init
+}
+
+#download to ~/Downloads
+dget() {
+  pushd ~/Downloads && wget $1 && popd
+}
+```
+
+These commands illustrate the principles of **wrappers**. The base-level master programmer / library developer doesn't want to make too many assumptions about you and your preferences. But you can make life easier for yourself by abbreviating things: either renaming long-named commands as 1- or 2-letter codes, or renaming frequent multi-command workflows as a single command.
+
+Nobody is going to stop you. Just make it easy on yourself.
+
+
+
+### Automate repetitive tasks with crontab
 
 
 
