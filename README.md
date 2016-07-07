@@ -105,7 +105,59 @@ unix for poets
 
 ### csvcut -n
 
-How many 
+How many columns is a lot or a little?
+
+```
+i@scheherezade:~/humility/statistics$ csvcut -n city_data.csv 
+  1: id
+  2: name
+  3: county
+  4: created_at
+  5: updated_at
+  6: income
+  7: violent_crime
+  8: latitude
+  9: longitude
+ 10: weather_high
+ 11: weather_low
+ 12: diversity_score
+ 13: women_score
+ 14: hs_score
+ 15: population
+ 16: politics
+ 17: cost_of_living
+ 18: car_dependency
+ 19: transit
+ 20: trees
+ 21: fips
+ 22: state_abbr
+ 23: density
+ 24: state
+ 25: pop_white
+ 26: pop_black
+ 27: pop_amerind
+ 28: pop_asian
+ 29: pop_other
+ 30: pop_mix
+ 31: pop_hawpac
+ 32: pop_race_tot
+ 33: is_oil
+ 34: is_tech
+ 35: is_defense
+ 36: unemployment_rate
+ 37: mean_commute_time
+ 38: education
+ 39: photo_url
+ 40: photo_credit
+ 41: photo_title
+ 42: households_with_kids
+ 43: median_list_price
+ 44: household_size
+ 45: percent_renters
+ 46: home_price_sqft
+ 47: housing_score
+```
+
 
 
 ### dplyr
@@ -153,7 +205,56 @@ http://isomorphism.es/post/41446182725/regression-beta-p
 
 Numerically you have two columns of data (plus an id or key). For example 
 
-
+```
+i@scheherezade:~/humility/statistics$ csvcut -n city_data.csv 
+  1: id
+  2: name
+  3: county
+  4: created_at
+  5: updated_at
+  6: income
+  7: violent_crime
+  8: latitude
+  9: longitude
+ 10: weather_high
+ 11: weather_low
+ 12: diversity_score
+ 13: women_score
+ 14: hs_score
+ 15: population
+ 16: politics
+ 17: cost_of_living
+ 18: car_dependency
+ 19: transit
+ 20: trees
+ 21: fips
+ 22: state_abbr
+ 23: density
+ 24: state
+ 25: pop_white
+ 26: pop_black
+ 27: pop_amerind
+ 28: pop_asian
+ 29: pop_other
+ 30: pop_mix
+ 31: pop_hawpac
+ 32: pop_race_tot
+ 33: is_oil
+ 34: is_tech
+ 35: is_defense
+ 36: unemployment_rate
+ 37: mean_commute_time
+ 38: education
+ 39: photo_url
+ 40: photo_credit
+ 41: photo_title
+ 42: households_with_kids
+ 43: median_list_price
+ 44: household_size
+ 45: percent_renters
+ 46: home_price_sqft
+ 47: housing_score
+```
 
 
 
@@ -167,4 +268,12 @@ Todd W Schneider analysing $2tn of mortgages (200GB of loan-level data)
 
 Treasury earnings.csv
 
-City-data.csv
+City-data.csv (a data-vis master student in California)
+
+
+
+
+
+# Valuable information your government is providing you with that you previously couldn't process
+
+citizen journalism
