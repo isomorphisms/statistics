@@ -53,10 +53,19 @@ Remove a row that contains "bad" data. For example in analysing my S3 website lo
 
 ### Storing: 
 
-#### csvlook
+#### flatfiles / csv's
 
 #### postgres
 
+There is a lot of hype about different types of databases, but people I talk to seem to agree that psotgres is robust, here to stay, and still improving.
+
+#### sqlite3
+
+for quickie projects
+
+#### Excel files
+
+So you want to interface with the normal office world of non-programmers?
 
 
 
@@ -112,6 +121,11 @@ Hist <- function(data, ...) {
 
 The `...` is special in `R`. `...` holds extra stuff you might want to pass to the inner `hist()` function, for example . It goes by other names in other languages, like `kwargs` or `argv`.
 
+
+
+`cat *txt | wc -w | r -l lubridate -pie 'dminutes(readLines())/80'`
+
+`wc -w` counts words (i.e. spaces+1).
 
 
 ### Loading:
